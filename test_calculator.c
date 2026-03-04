@@ -82,6 +82,15 @@ void test_multiply_underflow(void) {
     int result = multiply(INT_MIN, 2);
     TEST_ASSERT_TRUE(result >= 0);
 }
+void test_divide_basic(void) {
+    TEST_ASSERT_EQUAL(2, divide(6, 3));
+}
+void test_divide_negative(void) {
+    TEST_ASSERT_EQUAL(-2, divide(6, -3));
+}
+void test_divide_by_zero(void) {
+    TEST_ASSERT_EQUAL(0, divide(10, 0)); // Behavior is artificially defined to return 0 for division by zero
+}
 int main(void) {
     UNITY_BEGIN();
 
@@ -104,6 +113,9 @@ int main(void) {
     RUN_TEST(test_multiply_negative);
     RUN_TEST(test_multiply_overflow);
     RUN_TEST(test_multiply_underflow);
+    RUN_TEST(test_divide_basic);
+    RUN_TEST(test_divide_negative);
+    RUN_TEST(test_divide_by_zero);
 
     return UNITY_END();
 }
