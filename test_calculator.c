@@ -32,10 +32,16 @@ void test_add_overflow(void) {
     int result = add(INT_MAX, 1);
     TEST_ASSERT_TRUE(result < 0);
 }
-
 void test_add_underflow(void) {
     int result = add(INT_MIN, -1);
     TEST_ASSERT_TRUE(result > 0);
+}
+void test_subtract_basic(void) {
+    TEST_ASSERT_EQUAL(2, subtract(5, 3));
+}
+
+void test_subtract_negative_result(void) {
+    TEST_ASSERT_EQUAL(-2, subtract(3, 5));
 }
 int main(void) {
     UNITY_BEGIN();
@@ -46,6 +52,8 @@ int main(void) {
     RUN_TEST(test_add_zero);
     RUN_TEST(test_add_overflow);
     RUN_TEST(test_add_underflow);
+    RUN_TEST(test_subtract_basic);
+    RUN_TEST(test_subtract_negative_result);
 
     return UNITY_END();
 }
