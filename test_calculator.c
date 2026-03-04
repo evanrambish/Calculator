@@ -74,6 +74,14 @@ void test_multiply_by_zero(void) {
 void test_multiply_negative(void) {
     TEST_ASSERT_EQUAL(-12, multiply(3, -4));
 }
+void test_multiply_overflow(void) {
+    int result = multiply(INT_MAX, 2);
+    TEST_ASSERT_TRUE(result < 0);
+}
+void test_multiply_underflow(void) {
+    int result = multiply(INT_MIN, 2);
+    TEST_ASSERT_TRUE(result >= 0);
+}
 int main(void) {
     UNITY_BEGIN();
 
@@ -94,6 +102,8 @@ int main(void) {
     RUN_TEST(test_multiply_basic);
     RUN_TEST(test_multiply_by_zero);
     RUN_TEST(test_multiply_negative);
+    RUN_TEST(test_multiply_overflow);
+    RUN_TEST(test_multiply_underflow);
 
     return UNITY_END();
 }
