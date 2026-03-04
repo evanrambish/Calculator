@@ -39,9 +39,30 @@ void test_add_underflow(void) {
 void test_subtract_basic(void) {
     TEST_ASSERT_EQUAL(2, subtract(5, 3));
 }
-
 void test_subtract_negative_result(void) {
     TEST_ASSERT_EQUAL(-2, subtract(3, 5));
+}
+void test_subtract_negative(void) {
+    TEST_ASSERT_EQUAL(9, subtract(5, -4));
+}
+void test_subtract_both_negative(void) {
+    TEST_ASSERT_EQUAL(1, subtract(-3, -4));
+}
+void test_subtract_zero(void) {
+    TEST_ASSERT_EQUAL(10, subtract(10, 0));
+    TEST_ASSERT_EQUAL(-10, subtract(0, 10));
+}
+void test_subtract_same_numbers(void) {
+    TEST_ASSERT_EQUAL(0, subtract(7, 7));
+    TEST_ASSERT_EQUAL(0, subtract(-7, -7));
+}
+void test_subtract_overflow(void) {
+    int result = subtract(INT_MAX, -1);
+    TEST_ASSERT_TRUE(result < 0);
+}
+void test_subtract_underflow(void) {
+    int result = subtract(INT_MIN, 1); 
+    TEST_ASSERT_TRUE(result > 0);
 }
 int main(void) {
     UNITY_BEGIN();
@@ -54,6 +75,12 @@ int main(void) {
     RUN_TEST(test_add_underflow);
     RUN_TEST(test_subtract_basic);
     RUN_TEST(test_subtract_negative_result);
+    RUN_TEST(test_subtract_negative);
+    RUN_TEST(test_subtract_both_negative);
+    RUN_TEST(test_subtract_zero);
+    RUN_TEST(test_subtract_same_numbers);
+    RUN_TEST(test_subtract_overflow);
+    RUN_TEST(test_subtract_underflow);
 
     return UNITY_END();
 }
