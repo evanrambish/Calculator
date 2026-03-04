@@ -64,6 +64,16 @@ void test_subtract_underflow(void) {
     int result = subtract(INT_MIN, 1); 
     TEST_ASSERT_TRUE(result > 0);
 }
+void test_multiply_basic(void) {
+    TEST_ASSERT_EQUAL(15, multiply(5, 3));
+}
+void test_multiply_by_zero(void) {
+    TEST_ASSERT_EQUAL(0, multiply(10, 0));
+    TEST_ASSERT_EQUAL(0, multiply(0, 10));
+}
+void test_multiply_negative(void) {
+    TEST_ASSERT_EQUAL(-12, multiply(3, -4));
+}
 int main(void) {
     UNITY_BEGIN();
 
@@ -81,6 +91,9 @@ int main(void) {
     RUN_TEST(test_subtract_same_numbers);
     RUN_TEST(test_subtract_overflow);
     RUN_TEST(test_subtract_underflow);
+    RUN_TEST(test_multiply_basic);
+    RUN_TEST(test_multiply_by_zero);
+    RUN_TEST(test_multiply_negative);
 
     return UNITY_END();
 }
